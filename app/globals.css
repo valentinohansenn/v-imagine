@@ -305,6 +305,10 @@
 		@apply mt-8 flex w-full flex-col items-start gap-5;
 	}
 
+	.header-nav_element {
+		@apply flex-center p-16-semibold w-full whitespace-nowrap rounded-full bg-cover transition-all hover:bg-purple-100 hover:shadow-inner;
+	}
+
 	/* Search Component */
 	.search {
 		@apply flex w-full rounded-[16px] border-2 border-purple-200/20 bg-white px-4 shadow-sm shadow-purple-200/15 md:max-w-96;
@@ -328,7 +332,7 @@
 	}
 
 	.sidebar-nav_element {
-		@apply flex-center p-16-semibold w-full whitespace-nowrap rounded-full bg-cover  transition-all hover:bg-purple-100 hover:shadow-inner;
+		@apply flex-center p-16-semibold w-full whitespace-nowrap rounded-full bg-cover  transition-all hover:shadow-inner;
 	}
 
 	.sidebar-link {
