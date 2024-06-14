@@ -35,8 +35,8 @@ export const navigationLinks = [
 		icon: "/assets/icons/profile.svg",
 	},
 	{
-		label: "Buy Credits",
-		route: "/credits",
+		label: "Buy Tokens",
+		route: "/tokens",
 		icon: "/assets/icons/bag.svg",
 	},
 ]
@@ -47,10 +47,10 @@ export const plans = [
 		name: "Free",
 		icon: "/assets/icons/free-plan.svg",
 		price: 0,
-		credits: 20,
+		tokens: 20,
 		inclusions: [
 			{
-				label: "20 Free Credits",
+				label: "20 Free Tokens",
 				isIncluded: true,
 			},
 			{
@@ -72,10 +72,10 @@ export const plans = [
 		name: "Pro Package",
 		icon: "/assets/icons/free-plan.svg",
 		price: 40,
-		credits: 120,
+		tokens: 120,
 		inclusions: [
 			{
-				label: "120 Credits",
+				label: "120 Tokens",
 				isIncluded: true,
 			},
 			{
@@ -97,10 +97,10 @@ export const plans = [
 		name: "Premium Package",
 		icon: "/assets/icons/free-plan.svg",
 		price: 199,
-		credits: 2000,
+		tokens: 2000,
 		inclusions: [
 			{
-				label: "2000 Credits",
+				label: "2000 Tokens",
 				isIncluded: true,
 			},
 			{
@@ -190,4 +190,4 @@ export const defaultValues = {
 	publicId: "",
 }
 
-export const creditFee = -1
+export const tokenFee = -1

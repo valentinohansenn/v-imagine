@@ -4,6 +4,7 @@ import { revalidatePath } from "next/cache"
 import User from "../database/models/user.model"
 import { connectToDatabase } from "../database/mongoose"
 import { handleError } from "../utils"
+import { tokenFee } from "@/constants"
 
 // CREATE API
 export async function createUser(user: CreateUserParams) {
@@ -23,6 +24,9 @@ export async function getUser(userId: string) {
 		await connectToDatabase()
 
 		const user = await User.findOne({ clerkId: userId })
+
+		if (!user) throw new Error("User not found.")
+
 		return JSON.parse(JSON.stringify(user))
 	} catch (error) {
 		handleError(error)
@@ -61,6 +65,25 @@ export async function deleteUser(userId: string) {
 		revalidatePath("/")
 
 		return deletedUser ? JSON.parse(JSON.stringify(deletedUser)) : null
+	} catch (error) {
+		handleError(error)
+	}
+}
+
+// USE TOKENS
+export async function useTokens(userId: string, tokens: number) {
+	try {
+		await connectToDatabase()
+
+		const updatedUserFee = await User.findOneAndUpdate(
+			{ _id: userId },
+			{ $inc: { tokenBalance: tokenFee } },
+			{ new: true }
+		)
+
+		if (!updatedUserFee) throw new Error("User Update not successful.")
+
+		return JSON.parse(JSON.stringify(updatedUserFee))
 	} catch (error) {
 		handleError(error)
 	}

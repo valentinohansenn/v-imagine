@@ -125,7 +125,7 @@ declare type TransformationFormProps = {
 	action: "Add" | "Update"
 	userId: string
 	type: TransformationTypeKey
-	creditBalance: number
+	tokenBalance: number
 	data?: ImageInterface | null
 	config?: Transformations | null
 }
