@@ -13,6 +13,7 @@ const AddTransformationTypePage = async ({
 	const transformation = transformationTypes[type]
 
 	if (!userId) redirect("/sign-in")
+	const user = await getUser(userId)
 
 	return (
 		<>
@@ -20,12 +21,14 @@ const AddTransformationTypePage = async ({
 				title={transformation.title}
 				subtitle={transformation.subTitle}
 			/>
-			{/* <TransformationForm
-				action="Add"
-				userId={user._id}
-				type={transformation.type as TransformationTypeKey}
-				tokenBalance={user.tokenBalance}
-			/> */}
+			<section className="mt-10">
+				<TransformationForm
+					action="Add"
+					userId={user._id}
+					type={transformation.type as TransformationTypeKey}
+					tokenBalance={user.tokenBalance}
+				/>
+			</section>
 		</>
 	)
 }
