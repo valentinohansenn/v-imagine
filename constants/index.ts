@@ -1,4 +1,4 @@
-export const navLinks = [
+export const navigationLinks = [
 	{
 		label: "Home",
 		route: "/",
