@@ -47,7 +47,7 @@ export const InsufficientTokensModal = () => {
 					/>
 
 					<AlertDialogTitle className="p-24-bold text-black">
-						Unfortunately! The transformation can't be done due to
+						Unfortunately! The transformation can&#39;t be done due to
 						insufficient tokens...
 					</AlertDialogTitle>
 
