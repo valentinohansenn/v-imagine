@@ -70,7 +70,7 @@ export async function deleteUser(userId: string) {
 }
 
 // USE TOKENS
-export async function useTokens(userId: string, tokenFee: number) {
+export async function updateTokens(userId: string, tokenFee: number) {
 	try {
 		await connectToDatabase()
 

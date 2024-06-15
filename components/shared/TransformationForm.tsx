@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useState, useTransition } from "react"
+import React, { useEffect, useState, useTransition } from "react"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import { z } from "zod"
@@ -32,7 +32,7 @@ import {
 } from "@/lib/utils"
 import MediaUploader from "./MediaUploader"
 import TransformedImage from "./TransformedImage"
-import { useTokens } from "@/lib/actions/user.actions"
+import { updateTokens } from "@/lib/actions/user.actions"
 import { getCldImageUrl } from "next-cloudinary"
 import { addImage, updateImage } from "@/lib/actions/image.actions"
 import { useRouter } from "next/navigation"
@@ -191,11 +191,17 @@ const TransformationForm = ({
 		)
 
 		setNewTransformation(null)
+
 		startTransition(async () => {
-			// await updateTokens( userId, tokenFee)
-			await useTokens(userId, tokenFee)
+			await updateTokens(userId, tokenFee)
 		})
 	}
+
+	useEffect(() => {
+		if (image && (type === "restore" || type === "removeBackground")) {
+			setNewTransformation(transformationType.config)
+		}
+	}, [image, transformationType.config, type])
 
 	return (
 		<Form {...form}>
