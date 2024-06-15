@@ -4,7 +4,6 @@ import { revalidatePath } from "next/cache"
 import User from "../database/models/user.model"
 import { connectToDatabase } from "../database/mongoose"
 import { handleError } from "../utils"
-import { tokenFee } from "@/constants"
 
 // CREATE API
 export async function createUser(user: CreateUserParams) {
@@ -71,7 +70,7 @@ export async function deleteUser(userId: string) {
 }
 
 // USE TOKENS
-export async function useTokens(userId: string, tokens: number) {
+export async function useTokens(userId: string, tokenFee: number) {
 	try {
 		await connectToDatabase()
 
