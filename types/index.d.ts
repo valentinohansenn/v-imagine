@@ -67,7 +67,7 @@ declare type Transformations = {
 	recolor?: {
 		prompt?: string
 		to: string
-		multiple?: string
+		multiple?: boolean
 	}
 	removeBackground?: boolean
 }

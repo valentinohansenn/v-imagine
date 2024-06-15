@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useState } from "react"
+import React, { useState, useTransition } from "react"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import { z } from "zod"
@@ -23,7 +23,8 @@ import {
 	transformationTypes,
 } from "@/constants"
 import { CustomField } from "./CustomField"
-import { AspectRatioKey } from "@/lib/utils"
+import { AspectRatioKey, debounce, deepMergeObjects } from "@/lib/utils"
+import MediaUploader from "./MediaUploader"
 
 export const formSchema = z.object({
 	title: z.string(),
@@ -49,6 +50,7 @@ const TransformationForm = ({
 	const [isSubmitting, setIsSubmitting] = useState(false)
 	const [isTransforming, setIsTransforming] = useState(false)
 	const [transformationConfig, setTransformationConfig] = useState(config)
+	const [isPending, startTransition] = useTransition()
 
 	const initialValues =
 		data && action === "Update"
@@ -84,8 +86,8 @@ const TransformationForm = ({
 			width: imageSize.width,
 			height: imageSize.height,
 		}))
-		console.log({ transformationType })
-		// setNewTransformation(transformationType.config)
+
+		setNewTransformation(transformationType.config)
 		return onChangeField(value)
 	}
 
@@ -94,9 +96,32 @@ const TransformationForm = ({
 		value: string,
 		type: string,
 		onChangeField: (value: string) => void
-	) => {}
+	) => {
+		debounce(() => {
+			setNewTransformation((prev: any) => ({
+				...prev,
+				[type]: {
+					...prev?.[type],
+					[field === "prompt" ? "prompt" : "to"]: value,
+				},
+			}))
+			return onChangeField(value)
+		}, 1000)
+	}
 
-	const onTransformHandler = () => {}
+	// TODO: Return to updateTokens
+	const onTransformHandler = async () => {
+		setIsTransforming(true)
+
+		setTransformationConfig(
+			deepMergeObjects(newTransformation, transformationConfig)
+		)
+
+		setNewTransformation(null)
+		startTransition(async () => {
+			// await updateTokens(userId, tokenFee)
+		})
+	}
 
 	return (
 		<Form {...form}>
@@ -206,6 +231,24 @@ const TransformationForm = ({
 						)}
 					</div>
 				)}
+				<div className="media-uploader-field">
+					<CustomField
+						control={form.control}
+						name="publicId"
+						formLabel="Image"
+						className="flex size-full flex-col"
+						render={({ field }) => (
+							<MediaUploader
+								onValueChange={field.onChange}
+								setImage={setImage}
+								publicId={field.value}
+								image={image}
+								type={type}
+							/>
+						)}
+					/>
+				</div>
+
 				<div className="flex flex-col gap-4">
 					<Button
 						type="submit"
