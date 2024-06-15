@@ -178,8 +178,8 @@ const TransformationForm = ({
 					[field === "prompt" ? "prompt" : "to"]: value,
 				},
 			}))
-			return onChangeField(value)
-		}, 1000)
+		}, 1000)() // Self-invoking function at the end to trigger the debounce function
+		return onChangeField(value)
 	}
 
 	// TODO: Return to updateTokens
@@ -258,7 +258,7 @@ const TransformationForm = ({
 				)}
 
 				{(type === "remove" || type === "recolor") && (
-					<div>
+					<div className="flex gap-4">
 						<CustomField
 							control={form.control}
 							name="prompt"
