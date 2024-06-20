@@ -100,7 +100,7 @@ declare type TransformationTypeKey =
 
 // ===== URL Query Params =====
 declare type FormUrlQueryParams = {
-	searchParams: URLSearchParams
+	searchParams: string
 	key: string
 	value: string | number | null
 }
