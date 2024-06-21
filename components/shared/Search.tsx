@@ -1,10 +1,13 @@
-import { formUrlQuery, removeKeysFromQuery } from "@/lib/utils"
+"use client"
+
 import Image from "next/image"
 import { useRouter, useSearchParams } from "next/navigation"
-import React, { useState, useEffect } from "react"
-import { Input } from "../ui/input"
+import { useEffect, useState } from "react"
 
-const Search = () => {
+import { Input } from "@/components/ui/input"
+import { formUrlQuery, removeKeysFromQuery } from "@/lib/utils"
+
+export const Search = () => {
 	const router = useRouter()
 	const searchParams = useSearchParams()
 	const [query, setQuery] = useState("")
@@ -49,5 +52,3 @@ const Search = () => {
 		</div>
 	)
 }
-
-export default Search

@@ -13,7 +13,7 @@ const Home = async ({ searchParams }: SearchParamsProps) => {
 
 	return (
 		<>
-			<div className="w-full bg-black flex flex-col items-center justify-center overflow-hidden rounded-[20px] h-[800px] md:h-[700px] lg:h-[600px]">
+			<section className="w-full bg-black sm:flex-center flex-col items-center justify-center overflow-hidden rounded-[20px] h-[800px] md:h-[700px] lg:h-[600px] hidden">
 				<h1 className="md:text-7xl text-5xl lg:text-9xl font-bold text-center text-white relative z-20 max-w-[500px] shadow-sm">
 					Imagine.
 				</h1>
@@ -30,11 +30,11 @@ const Home = async ({ searchParams }: SearchParamsProps) => {
 						minSize={0.4}
 						maxSize={1}
 						particleDensity={1200}
-						className="w-full h-full"
+						className="w-full h-full z-0"
 						particleColor="#FFFFFF"
 					/>
 
-					<ul className="md:flex-center md:flex-nowrap flex flex-wrap justify-center w-full px-4 gap-10 md:gap-15 lg:gap-20 cursor-pointer">
+					<ul className="flex-center w-full px-4 gap-10 md:gap-15 lg:gap-20 cursor-pointer">
 						{navigationLinks.slice(1, 5).map((link) => (
 							<Link
 								key={link.route}
@@ -59,7 +59,7 @@ const Home = async ({ searchParams }: SearchParamsProps) => {
 					{/* Radial Gradient to prevent sharp edges */}
 					<div className="absolute inset-0 w-full h-full bg-black [mask-image:radial-gradient(350px_200px_at_top,transparent_20%,white)]"></div>
 				</div>
-			</div>
+			</section>
 
 			<section className="sm:mt-12">
 				<Collection

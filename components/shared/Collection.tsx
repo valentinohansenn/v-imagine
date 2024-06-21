@@ -1,7 +1,6 @@
 "use client"
 
 import { ImageInterface } from "@/lib/database/models/image.model"
-import { Search } from "lucide-react"
 import React from "react"
 
 import {
@@ -18,6 +17,8 @@ import Link from "next/link"
 import { CldImage } from "next-cloudinary"
 import { transformationTypes } from "@/constants"
 import Image from "next/image"
+import { Search } from "@/components/shared/Search"
+import { SignedIn } from "@clerk/nextjs"
 
 const Collection = ({
 	hasSearch = false,
@@ -47,14 +48,17 @@ const Collection = ({
 
 	return (
 		<>
-			<div className="collection-heading">
-				<h2 className="h2-bold">Recent Edits</h2>
-				{hasSearch && <Search />}
+			<SignedIn>
+				<div className="collection-heading">
+					<h2 className="h2-bold text-black">Recent Edits</h2>
+					{hasSearch && <Search />}
+				</div>
 
 				{images.length > 0 ? (
 					<ul className="collection-list">
 						{images.map((image) => {
-							return <Card image={image} />
+							// @ts-ignore
+							return <Card key={image._id} image={image} />
 						})}
 					</ul>
 				) : (
@@ -88,7 +92,7 @@ const Collection = ({
 						</PaginationContent>
 					</Pagination>
 				)}
-			</div>
+			</SignedIn>
 		</>
 	)
 }
@@ -111,7 +115,9 @@ const Card = ({ image }: { image: ImageInterface }) => {
 					sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 33vw"
 				/>
 				<div className="flex-between">
-					<p className="p-20-semibold mr-3 line-clamp-1">{image.title}</p>
+					<p className="p-20-semibold mr-3 line-clamp-1 text-black">
+						{image.title}
+					</p>
 
 					<Image
 						src={`assets/icons/${

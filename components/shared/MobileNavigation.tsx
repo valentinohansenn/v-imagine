@@ -14,7 +14,7 @@ const MobileNavigation = () => {
 	return (
 		<header className="header">
 			<SignedIn>
-				<Sheet key="left">
+				<Sheet key="left z-30">
 					<SheetTrigger>
 						<Image
 							src="/assets/icons/menu.svg"
@@ -23,7 +23,7 @@ const MobileNavigation = () => {
 							width={28}
 						/>
 					</SheetTrigger>
-					<SheetContent side="left" className="sheet-content sm:w-64">
+					<SheetContent side="left" className="sheet-content sm:w-80">
 						<>
 							<Image
 								src="/assets/images/main-logo.png"

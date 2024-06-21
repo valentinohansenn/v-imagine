@@ -5,7 +5,7 @@ export const navigationLinks = [
 		icon: "/assets/icons/home.svg",
 	},
 	{
-		label: "Image Restore",
+		label: "Restore Image",
 		route: "/transformations/add/restore",
 		icon: "/assets/icons/image.svg",
 	},
@@ -15,7 +15,7 @@ export const navigationLinks = [
 		icon: "/assets/icons/stars.svg",
 	},
 	{
-		label: "Object Remove",
+		label: "Object Removal",
 		route: "/transformations/add/remove",
 		icon: "/assets/icons/scan.svg",
 	},
@@ -25,7 +25,7 @@ export const navigationLinks = [
 		icon: "/assets/icons/filter.svg",
 	},
 	{
-		label: "Background Remove",
+		label: "Background Removal",
 		route: "/transformations/add/removeBackground",
 		icon: "/assets/icons/camera.svg",
 	},
