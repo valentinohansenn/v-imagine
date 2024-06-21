@@ -19,7 +19,7 @@ const AddTransformationTypePage = async ({
 		<>
 			<Header
 				title={transformation.title}
-				subtitle={transformation.subTitle}
+				subtitle={transformation.subtitle}
 			/>
 			<section className="mt-10">
 				<TransformationForm

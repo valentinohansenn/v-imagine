@@ -6,6 +6,7 @@ import { getImage } from "@/lib/actions/image.actions"
 import { getImageSize } from "@/lib/utils"
 import { auth } from "@clerk/nextjs/server"
 import Image from "next/image"
+import Link from "next/link"
 import React from "react"
 
 const ImagePage = async ({ params: { id } }: SearchParamsProps) => {
@@ -87,8 +88,14 @@ const ImagePage = async ({ params: { id } }: SearchParamsProps) => {
 
 				{image.author.clerkId === userId && (
 					<div className="mt-4 space-y-4">
-						<Button type="button" className="submit-button capitalize">
-							Update Image
+						<Button
+							asChild
+							type="button"
+							className="submit-button capitalize"
+						>
+							<Link href={`/transformations/${image._id}/update`}>
+								Update Image
+							</Link>
 						</Button>
 
 						<DeleteConfirmation imageId={image._id} />

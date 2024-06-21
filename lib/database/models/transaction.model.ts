@@ -5,7 +5,7 @@ const TransactionSchema = new Schema({
 	amount: { type: Number, required: true },
 	plan: { type: String },
 	tokens: { type: Number },
-	buyer: { type: Schema.Types.ObjectId, ref: "User" },
+	buyerId: { type: Schema.Types.ObjectId, ref: "User" },
 })
 
 const Transaction =
